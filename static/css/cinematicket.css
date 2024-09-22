@@ -1,0 +1,14 @@
+body{
+  background-color: aquamarine;
+}
+
+.food-img{
+  width:350px;
+  height: 300px;
+}
+
+a{
+  
+  text-decoration: none;
+  cursor: auto;
+}

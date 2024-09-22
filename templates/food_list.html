@@ -1,0 +1,60 @@
+{% extends "base.html" %} 
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/cinematicket.css" %}" />
+{% endblock css %}
+
+
+{% block content %}
+
+<div class="container-fluid text-center mt-3">
+  
+  <h3>Food list Menu</h3>
+  <a href="{% url "cinematicket:add_food" %}"> افزودن غذا  </a>
+</div>
+
+  <div class="container-flouid mt-5 d-flex justify-content-around">
+    {% for f in food %}
+    <a style="text-decoration:none" href="{% url "cinematicket:food_detail" f.pk  %}">
+    <div style="width: 350px; height:155px">
+      <div class="card mb-3">
+        
+
+
+<img class="food-img" src="{{f.photo.url}}">
+          
+          
+
+        </svg>
+        <h3 class="card-header text-end bg-secondary text-light">{{f.name}} </h3>
+        <div class="card-body">
+          <p class="card-text text-end text-muted">{{f.description |truncatechars:55}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-center text-warning">امتیاز {{f.rate}}</li>
+          <li class="list-group-item text-center text-success">
+            قیمت &nbsp;......&nbsp;{{f.price}}هزارتومان
+          </li>
+        </ul>
+
+        <div class="card-footer text-danger">{{f.pub_date}}   <a style="float:right" href="{% url "cinematicket:update_food" f.pk  %}">ویرایش </a> 
+        
+        
+          <p  style="  float:right ; margin-right:25px">
+            <a style="float:right;color:red;" href="{% url "cinematicket:delete_food" f.pk  %}">حذف </a></p>
+
+
+        </div>
+      </div>
+    </div>
+    </a>
+    {% endfor %}
+  </div>
+
+
+</div>
+
+{% endblock content %}
+
